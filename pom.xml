@@ -10,9 +10,7 @@
         <junit-jupiter-engine>5.8.1</junit-jupiter-engine>
         <junit-vintage-engine>5.4.0</junit-vintage-engine>
         <json-simple>1.1</json-simple>
-        <selenium-java>4.1.0</selenium-java>
         <maven-surefire-plugin>3.0.0-M5</maven-surefire-plugin>
-        <snakeyml.version>1.30</snakeyml.version>
         <httpclient>4.5.13</httpclient>
         <parallel.count>5</parallel.count>
         <tests.single>**/tests.SingleTest.java</tests.single>
@@ -32,12 +30,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>${json-simple}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>${maven-surefire-plugin}</version>
@@ -47,12 +39,6 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>${httpclient}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.browserstack</groupId>
-            <artifactId>browserstack-java-sdk</artifactId>
-            <version>LATEST</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>
@@ -70,40 +56,9 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin}</version>
-                <configuration>
-                    <includes>
-                        <include>${tests.single}</include>
-                    </includes>
-                    <argLine>-javaagent:${com.browserstack:browserstack-java-sdk:jar}</argLine>
-                    <testFailureIgnore>false</testFailureIgnore>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
     <profiles>
-        <profile>
-            <id>single</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>${tests.single}</include>
-                            </includes>
-                            <argLine>-javaagent:${com.browserstack:browserstack-java-sdk:jar}</argLine>
-                            <testFailureIgnore>false</testFailureIgnore>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
         <profile>
             <id>local</id>
             <build>
